@@ -1,0 +1,45 @@
+# Created by newuser for 4.3.17
+
+#source ~/Projects/zsh-git-prompt/zshrc.sh
+#source ~/Projects/liquidprompt/liquidprompt
+#source ~/zsh_dbmanagement
+#fpath=($HOME/Projects/zsh-completions/src $fpath)
+#PROMPT='%{'$'\033[01;32m%}%n@%B%m%{\033[00m%} %{\033[01;33m%}%~%{\033[00m%}%b$(git_super_status)%{\033[00m%} '
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
+zstyle ':completion:*' max-errors 3 numeric
+zstyle ':completion:*' use-compctl false
+autoload -Uz compinit
+compinit
+
+setopt INC_APPEND_HISTORY
+
+
+# general
+alias ls='ls --color=auto'
+alias o="xdg-open"
+alias reload="source ~/.zshrc"
+
+alias bstart="bluetile & chromium & tomboy&"
+alias pgactivity="pg_activity -h \"\""
+
+# Work
+alias os="/home/olivier/.virtualenvs/prod/bin/python /home/olivier/Projects/rn/server/bin/openerp-server.py --log-level=test"
+alias ow="/home/olivier/.virtualenvs/prod/bin/python /home/olivier/Projects/rn/web.git/openerp-web.py"
+alias prod="ssh openerp -t screen -RD"
+alias atunnel="ssh olivier@donut.railnova.eu -L 6540:localhost:443"
+
+
+# Needed for virtual env
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /etc/bash_completion.d/virtualenvwrapper
+
+
+# ANTIGEN 
+source $HOME/dotfiles/antigen.zsh
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle olethanh/liquidprompt  --branch=antigen
+antigen bundle zsh-users/zsh-completions src
+antigen apply
+
+
