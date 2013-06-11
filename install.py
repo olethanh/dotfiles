@@ -11,3 +11,7 @@ for filename in os.listdir("dot"):
     else:
         print "Creating target:", target, " from source: ", src
         os.symlink(src, target)
+
+# Install vundle if not existant
+if not  os.path.exists(os.path.expanduser("~/.vim/bundle/vundle/")):
+    os.system("git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle")
