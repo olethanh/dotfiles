@@ -37,8 +37,8 @@ source /etc/bash_completion.d/virtualenvwrapper
 
 # ANTIGEN 
 source $HOME/dotfiles/antigen.zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle olethanh/liquidprompt  --branch=antigen
+#antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle nojhan/liquidprompt
 antigen bundle zsh-users/zsh-completions src
 antigen apply
 
