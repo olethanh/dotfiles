@@ -19,7 +19,7 @@ alias ls='ls --color=auto'
 alias o="xdg-open"
 alias reload="source ~/.zshrc"
 
-alias bstart="bluetile & chromium & tomboy&"
+alias bstart="bluetile & chromium & tomboy & nm-applet &"
 alias pgactivity="pg_activity -h \"\""
 
 # Work
