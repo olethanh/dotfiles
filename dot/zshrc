@@ -32,7 +32,8 @@ alias atunnel="ssh olivier@donut.railnova.eu -L 6540:localhost:443"
 # Needed for virtual env
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
-source /etc/bash_completion.d/virtualenvwrapper
+#source /etc/bash_completion.d/virtualenvwrapper
+source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
 
 
 # ANTIGEN 
