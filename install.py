@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import os
 
 for filename in os.listdir("dot"):
@@ -15,3 +14,5 @@ for filename in os.listdir("dot"):
 # Install vundle if not existant
 if not  os.path.exists(os.path.expanduser("~/.vim/bundle/vundle/")):
     os.system("git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle")
+else:
+    print "Vundle already installed"
