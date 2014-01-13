@@ -44,3 +44,17 @@ antigen bundle zsh-users/zsh-completions src
 antigen apply
 
 
+vmr()
+{
+    echo -en "\033]0;$1\a"
+    ssh speculos -tA ssh -t $1 sudo screen -RD $2
+    echo -en "\033]0;out\a"
+}
+
+vm()
+{
+    echo -en "\033]0;$1\a"
+    ssh speculos -tA ssh -t $1 screen -RD
+    echo -en "\033]0;out\a"
+}
+
