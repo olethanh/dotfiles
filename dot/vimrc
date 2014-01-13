@@ -39,6 +39,8 @@ Bundle 'Yggdroot/indentLine'
 Bundle 'fmoralesc/vim-vitamins.git'
 Bundle 'Jinja'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
 
 filetype plugin indent on     " required for vundle!
 "
@@ -54,6 +56,7 @@ filetype plugin indent on     " required for vundle!
 " Some auto file type detection for color syntaxing
 au BufNewFile,BufRead *.mako setfiletype mako
 au BufRead,BufNewFile *.go setfiletype go
+au BufRead,BufNewFile *.coffee set ts=2 sw=2
 
 " more colors
 set t_Co=256
