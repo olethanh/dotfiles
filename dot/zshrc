@@ -58,3 +58,8 @@ vm()
     echo -en "\033]0;out\a"
 }
 
+alias m="python manage.py"
+alias nb="echo -en \"\033]0;Notebook serv\a\";~/.virtualenvs/nb/bin/ipython notebook --profile=nb;echo -en \"\033]0;out\a\";"
+alias gnb="echo -en \"\033]0;Notebook serv\a\";~/.virtualenvs/ng/bin/ipython notebook --profile=gnb;echo -en \"\033]0;out\a\";"
+alias as="apt-cache search"
+alias ai="sudo apt-get install"
