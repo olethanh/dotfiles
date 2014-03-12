@@ -41,6 +41,7 @@ Bundle 'Jinja'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
+Bundle 'PeterRincker/vim-argumentative'
 
 filetype plugin indent on     " required for vundle!
 "
