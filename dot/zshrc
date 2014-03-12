@@ -25,13 +25,14 @@ alias ls='ls --color=auto'
 alias o="xdg-open"
 alias reload="source ~/.zshrc"
 
-alias bstart="bluetile & chromium & tomboy & nm-applet &"
+alias bstart="bluetile & chromium & tomboy & nm-applet & feh --bg-center 43Ip0Ww.jpg "
 alias pgactivity="pg_activity -h \"\""
 
 # Work
 alias os="/home/olivier/.virtualenvs/prod/bin/python /home/olivier/Projects/rn/server/bin/openerp-server.py --log-level=test"
 alias ow="/home/olivier/.virtualenvs/prod/bin/python /home/olivier/Projects/rn/web.git/openerp-web.py"
-alias prod="ssh openerp -t screen -RD"
+    
+alias prod="echo -en \"\033]0;prod\a\"; ssh openerp -t screen -RD;echo -en \"\033]0;Terminal\a\"; "
 alias atunnel="ssh olivier@donut.railnova.eu -L 6540:localhost:443"
 
 
