@@ -73,3 +73,6 @@ alias ai="sudo apt-get install"
 # Insert Google DNS in resolv.conf
 alias gdns="sudo sh -c 'echo nameserver 8.8.8.8 > /etc/resolv.conf'"
 
+
+# set up PIP Download cache so it won't reload the package
+PIP_DOWNLOAD_CACHE=$HOME/.cache/pip
