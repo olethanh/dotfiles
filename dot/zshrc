@@ -70,3 +70,6 @@ alias nb="echo -en \"\033]0;Notebook serv\a\";~/.virtualenvs/nb/bin/ipython note
 alias gnb="echo -en \"\033]0;Notebook serv\a\";~/.virtualenvs/ng/bin/ipython notebook --profile=gnb;echo -en \"\033]0;out\a\";"
 alias as="apt-cache search"
 alias ai="sudo apt-get install"
+# Insert Google DNS in resolv.conf
+alias gdns="sudo sh -c 'echo nameserver 8.8.8.8 > /etc/resolv.conf'"
+
