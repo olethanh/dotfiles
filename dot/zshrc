@@ -12,6 +12,12 @@ autoload -Uz compinit
 compinit
 
 setopt INC_APPEND_HISTORY
+setopt histignorealldups sharehistory
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
 
 
 # general
