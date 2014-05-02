@@ -95,3 +95,8 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# ng dev
+alias fakesmtp="/usr/bin/python -m smtpd -n -c DebuggingServer localhost:4025"
+alias fakestation="/home/olivier/.virtualenvs/station/bin/python Projects/rn/station/manage.py runserver 8001"
+alias ng="/home/olivier/.virtualenvs/ng2/bin/python /home/olivier/Projects/RailfleetNG/manage.py"
