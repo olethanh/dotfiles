@@ -107,5 +107,6 @@ noremap <silent><F6> :call ResetSnippets()<CR>:call " GetSnippets(snippets_dir, 
 set suffixes=*.pyc,*.aux,*.swp,*.pyo
 
 " Shortcut for Autopep
-noremap ,a :up<cr>:silent !autopep8 --ignore E501,E128 -i %<cr>:e!<cr>:redraw!<cr>
+noremap ,a :up<cr>:silent !autopep8 --ignore E501,E128,E309 -i %<cr>:e!<cr>:redraw!<cr>
+noremap ,b :up<cr>:silent !pyfmt -i %<cr>:e!<cr>:redraw!<cr>
 
