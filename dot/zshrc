@@ -76,7 +76,7 @@ alias gdns="sudo sh -c 'echo nameserver 8.8.8.8 > /etc/resolv.conf'"
 
 
 # set up PIP Download cache so it won't reload the package
-PIP_DOWNLOAD_CACHE=$HOME/.cache/pip
+export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip
 
 # Taken from debian default .zsh not sure what it does yet
 zstyle ':completion:*' auto-description 'specify: %d'
