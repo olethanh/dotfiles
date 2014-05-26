@@ -65,6 +65,7 @@ vm()
     echo -en "\033]0;out\a"
 }
 
+alias c="cd .."
 alias m="python manage.py"
 alias nb="echo -en \"\033]0;Notebook serv\a\";~/.virtualenvs/nb/bin/ipython notebook --profile=nb;echo -en \"\033]0;out\a\";"
 alias gnb="echo -en \"\033]0;Notebook serv\a\";~/.virtualenvs/ng/bin/ipython notebook --profile=gnb;echo -en \"\033]0;out\a\";"
@@ -100,3 +101,4 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 alias fakesmtp="/usr/bin/python -m smtpd -n -c DebuggingServer localhost:4025"
 alias fakestation="/home/olivier/.virtualenvs/station/bin/python Projects/rn/station/manage.py runserver 8001"
 alias ng="/home/olivier/.virtualenvs/ng2/bin/python /home/olivier/Projects/RailfleetNG/manage.py"
+alias dbsize="psql postgres -c \"select datname, pg_size_pretty(pg_database_size(datname)) from pg_database;\""
