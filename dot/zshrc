@@ -38,7 +38,7 @@ alias atunnel="ssh olivier@donut.railnova.eu -L 6540:localhost:443"
 
 # Needed for virtual env
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
+export PROJECT_HOME=$HOME/Projects #used by mkproject (of virtualenvwrapper)
 #source /etc/bash_completion.d/virtualenvwrapper
 source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
 
@@ -76,7 +76,7 @@ alias gdns="sudo sh -c 'echo nameserver 8.8.8.8 > /etc/resolv.conf'"
 
 
 # set up PIP Download cache so it won't reload the package
-PIP_DOWNLOAD_CACHE=$HOME/.cache/pip
+export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip
 # Command to release on pypi
 alias release="python setup.py egg_info sdist bdist_wheel bdist_egg upload"
 
