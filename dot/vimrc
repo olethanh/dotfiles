@@ -1,47 +1,45 @@
 set nocompatible               " be iMproved
 filetype off                   " required for vundle!
 
-" Vundle install :  $ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 " Vundle
+" Vundle install :  $ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required! 
+" let Vundle manage Vundle " required!
 Bundle 'gmarik/vundle'
 
-" original repos on github
-"Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Bundle 'tpope/vim-rails.git'
-" vim-scripts repos
+" colorscheme
+Bundle 'fmoralesc/vim-vitamins.git'
+" syntax hl
+Bundle 'mako.vim'
+Bundle 'Jinja'
+Bundle 'vim-coffee-script'
+
+" python
+Bundle 'pyflakes.vim'
+Bundle 'indentpython.vim'
+Bundle 'davidhalter/jedi-vim'
+" Others
+Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'The-NERD-Commenter'
 "Bundle 'taglist.vim'
 Bundle 'Tagbar'
-" syntax hl for mako
-Bundle 'mako.vim'
-Bundle 'pyflakes.vim'
-Bundle 'indentpython.vim'
-Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'kien/ctrlp.vim'
-Bundle 'vim-coffee-script'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'PeterRincker/vim-argumentative'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'Yggdroot/indentLine'
+"Bundle 'vimez/vim-showmarks' " conflict with vim-gutter, deactivated
 " Snipmate & dependencies
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 "Bundle "honza/snipmate-snippets"
 Bundle "garbas/vim-snipmate"
-Bundle 'davidhalter/jedi-vim'
 Bundle 'file:///home/olivier/Projects/openerp-snippets.vim/'
 " End snipmate
-Bundle 'airblade/vim-gitgutter'
-Bundle 'Yggdroot/indentLine'
-"Bundle 'vimez/vim-showmarks'
-Bundle 'fmoralesc/vim-vitamins.git'
-Bundle 'Jinja'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'PeterRincker/vim-argumentative'
 
 filetype plugin indent on     " required for vundle!
 "
@@ -54,7 +52,7 @@ filetype plugin indent on     " required for vundle!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 
-" Some auto file type detection for color syntaxing
+" Some auto filetype detection for color syntaxing
 au BufNewFile,BufRead *.mako setfiletype mako
 au BufRead,BufNewFile *.go setfiletype go
 au BufRead,BufNewFile *.coffee set ts=2 sw=2
