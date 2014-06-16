@@ -104,5 +104,5 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 alias fakesmtp="/usr/bin/python -m smtpd -n -c DebuggingServer localhost:4025"
 alias fakestation="/home/olivier/.virtualenvs/station/bin/python Projects/rn/station/manage.py runserver 8001"
 alias ng="/home/olivier/.virtualenvs/ng2/bin/python /home/olivier/Projects/RailfleetNG/manage.py"
-alias dbsize="psql postgres -c \"select datname, pg_size_pretty(pg_database_size(datname)) from pg_database;\""
+alias dbsize="psql postgres -c \"select datname, pg_size_pretty(pg_database_size(datname)) as size from pg_database order by pg_database_size(datname) desc;\""
 
