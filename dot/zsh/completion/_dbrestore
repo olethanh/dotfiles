@@ -1,0 +1,6 @@
+#compdef dbrestore
+##_arguments "1: :("$(ls Projects/dumps | tr "\n" " ")")"
+for f in ~/Projects/dumps/*
+do
+    compadd $f
+done
