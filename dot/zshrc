@@ -106,3 +106,14 @@ alias fakestation="/home/olivier/.virtualenvs/station/bin/python Projects/rn/sta
 alias ng="/home/olivier/.virtualenvs/ng2/bin/python /home/olivier/Projects/RailfleetNG/manage.py"
 alias dbsize="psql postgres -c \"select datname, pg_size_pretty(pg_database_size(datname)) as size from pg_database order by pg_database_size(datname) desc;\""
 
+
+
+retrievedb() {
+    lftp -c "open sftp://bkp@speculos.railnova.eu; get bkp@donut.railnova.eu/$1/DAILY/LAST.dump -o Projects/dumps/$1-last.dump"
+}
+
+
+dbrestore() {
+    pg_restore -d postgres --create -x -O  $1
+
+}
