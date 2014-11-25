@@ -23,12 +23,14 @@ Bundle 'davidhalter/jedi-vim'
 " Others
 Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'The-NERD-Commenter'
+Bundle 'lambdatoast/elm.vim'
 "Bundle 'taglist.vim'
 Bundle 'Tagbar'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-vinegar'
 Bundle 'PeterRincker/vim-argumentative'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'Yggdroot/indentLine'
@@ -40,6 +42,7 @@ Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle 'file:///home/olivier/Projects/openerp-snippets.vim/'
 " End snipmate
+Bundle 'moll/vim-bbye'
 
 filetype plugin indent on     " required for vundle!
 "
@@ -107,4 +110,9 @@ set suffixes=*.pyc,*.aux,*.swp,*.pyo
 " Shortcut for Autopep
 noremap ,a :up<cr>:silent !autopep8 --ignore E501,E128,E309 -i %<cr>:e!<cr>:redraw!<cr>
 noremap ,b :up<cr>:silent !pyfmt -i %<cr>:e!<cr>:redraw!<cr>
+
+autocmd FileType netrw nnoremap q :bp\|bd #<CR>
+
+nmap <C-n> :bnext<CR>
+nmap <C-m> :bprev<CR>
 
