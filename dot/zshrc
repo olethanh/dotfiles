@@ -122,3 +122,7 @@ dbrestore() {
 
 }
 export PATH=$PATH:/home/olivier/.cabal/bin
+
+alias invoke="invoker ~/all.ini"
+
+alias irc="echo -en \"\033]0;chat\a\"; ssh staz@server.staz.be -t screen -RDU pts-7; echo -en \"\033]0;Terminal\a\""
