@@ -121,3 +121,4 @@ dbrestore() {
     pg_restore -d postgres --create -x -O  $1
 
 }
+export PATH=$PATH:/home/olivier/.cabal/bin
