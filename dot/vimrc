@@ -15,6 +15,8 @@ Bundle 'fmoralesc/vim-vitamins.git'
 Bundle 'mako.vim'
 Bundle 'Jinja'
 Bundle 'vim-coffee-script'
+Bundle 'saltstack/salt-vim'
+
 
 " python
 Bundle 'pyflakes.vim'
