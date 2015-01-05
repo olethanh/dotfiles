@@ -108,6 +108,7 @@ noremap <silent><F6> :call ResetSnippets()<CR>:call " GetSnippets(snippets_dir, 
 
 " Ignore theses extensions
 set suffixes=*.pyc,*.aux,*.swp,*.pyo
+set wildignore=*.swp,*.pyc
 
 " Shortcut for Autopep
 noremap ,a :up<cr>:silent !autopep8 --ignore E501,E128,E309 -i %<cr>:e!<cr>:redraw!<cr>
