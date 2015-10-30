@@ -31,8 +31,8 @@ alias pgactivity="pg_activity -h \"\""
 alias pga="pg_activity -h \"\""
 
 # Work
-alias os="/home/olivier/.virtualenvs/rn/bin/python /home/olivier/Projects/openerp-server/bin/openerp-server.py --log-level=test"
-alias ow="/home/olivier/.virtualenvs/prod/bin/python /home/olivier/Projects/rn/web.git/openerp-web.py"
+alias os="/home/olivier/.virtualenvs/rn/bin/python /home/olivier/Projects/openerp-server/bin/openerp-server.py --log-level=test --without-demo=all"
+alias ow="/home/olivier/.virtualenvs/rn/bin/python /home/olivier/Projects/openerp-web/openerp-web.py"
 
 alias prod="echo -en \"\033]0;prod\a\"; ssh openerp@donut.railnova.eu -t screen -RD;echo -en \"\033]0;Terminal\a\"; "
 alias atunnel="ssh olivier@donut.railnova.eu -L 6540:localhost:443"
@@ -105,7 +105,9 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # ng dev
 alias fakesmtp="/usr/bin/python -m smtpd -n -c DebuggingServer localhost:4025"
 alias fakestation="/home/olivier/.virtualenvs/station/bin/python Projects/rn/station/manage.py runserver 8001"
-alias ng="/home/olivier/.virtualenvs/rn/bin/python /home/olivier/Projects/RailfleetNG/manage.py"
+alias ng="/home/olivier/.virtualenvs/sr/bin/python /home/olivier/Projects/RailfleetNG/manage.py"
+alias sn="/home/olivier/.virtualenvs/su/bin/python /home/olivier/Projects/Supernova/manage.py"
+alias snr="/home/olivier/.virtualenvs/sn/bin/python /home/olivier/Projects/Supernova/manage.py runserver 8001"
 alias dbsize="psql postgres -c \"select datname, pg_size_pretty(pg_database_size(datname)) as size from pg_database order by pg_database_size(datname) desc;\""
 
 # vpn
@@ -113,7 +115,7 @@ alias vpn="sudo openvpn ~/.rn-vpn.conf"
 
 
 retrievedb() {
-    lftp -c "open sftp://bkp@speculos.railnova.eu; get bkp@donut.railnova.eu/$1/DAILY/LAST.dump -o ~/Projects/dumps/$1-last.dump"
+    lftp -c "open sftp://bkp@sabayon.railnova.eu; get bkp@donut.railnova.eu/$1/DAILY/LAST.dump -o ~/Projects/dumps/$1-$(date -I).dump"
 }
 
 
@@ -121,12 +123,12 @@ dbrestore() {
     pg_restore -d postgres --create -x -O  $1
 
 }
-export PATH=$PATH:/home/olivier/.cabal/bin
+export PATH=$PATH:/home/olivier/.cabal/bin:/home/olivier/.local/bin
 
 alias invoke="invoker ~/all.ini"
 
 alias irc="echo -en \"\033]0;chat\a\"; ssh staz@server.staz.be -t screen -RDU pts-7; echo -en \"\033]0;Terminal\a\""
-alias q="echo -en \"\033]0;/tmp/q\a\"; tail -f /tmp/q; echo -en \"\033]0;Terminal\a\""
+alias q="echo -en \"\033]0;/tmp/q\a\"; touch /tmp/q; tail -f /tmp/q; echo -en \"\033]0;Terminal\a\""
 
 gcm() {
 #    git commit -m "[$1] $(echo $*)";}
@@ -134,3 +136,31 @@ gcm() {
 
 
 export EDITOR=vim
+alias autube="youtube-dl -x"
+alias l="ls -lh"
+alias taupe="netstat -taupe"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+cdp () {
+    cd "$(python -c "import os.path as _, ${1}; \
+            print(_.dirname(_.realpath(${1}.__file__[:-1])))"
+        )"
+}
+
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
+
+#alias git=hub
+alias dbpwreset="psql -c \"update res_users set password ='admin';\""
+
+alias shell='sudo -u django /home/django/Supernova/venv/bin/python /home/django/Supernova/manage.py shell_plus'

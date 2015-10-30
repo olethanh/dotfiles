@@ -46,6 +46,8 @@ Bundle 'file:///home/olivier/Projects/openerp-snippets.vim/'
 " End snipmate
 Bundle 'moll/vim-bbye'
 
+set rtp+=~/.fzf
+
 filetype plugin indent on     " required for vundle!
 "
 " Brief help
@@ -60,7 +62,7 @@ filetype plugin indent on     " required for vundle!
 " Some auto filetype detection for color syntaxing
 au BufNewFile,BufRead *.mako setfiletype mako
 au BufRead,BufNewFile *.go setfiletype go
-au BufRead,BufNewFile *.coffee set ts=2 sw=2
+au BufRead,BufNewFile *.coffee set ts=4 sw=4
 
 " more colors
 set t_Co=256
@@ -90,7 +92,7 @@ set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·
 au VimResized * :wincmd =
 
 " Fold javascript
-let javaScript_fold=1
+"let javaScript_fold=1
 
 " Some shortcuts
 map <C-c> :confirm qa<cr>
@@ -100,6 +102,10 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 map <F5> :TagbarToggle<cr>
 nmap ; :
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
+map q: :q
+
 
 colorscheme vitamins
 
@@ -111,11 +117,11 @@ set suffixes=*.pyc,*.aux,*.swp,*.pyo
 set wildignore=*.swp,*.pyc
 
 " Shortcut for Autopep
-noremap ,a :up<cr>:silent !autopep8 --ignore E501,E128,E309 -i %<cr>:e!<cr>:redraw!<cr>
+noremap ,a :up<cr>:silent !autopep8  -i %<cr>:e!<cr>:redraw!<cr>
 noremap ,b :up<cr>:silent !pyfmt -i %<cr>:e!<cr>:redraw!<cr>
 
 autocmd FileType netrw nnoremap q :bp\|bd #<CR>
 
 nmap <C-n> :bnext<CR>
-nmap <C-m> :bprev<CR>
+nmap <C-p> :bprev<CR>
 
