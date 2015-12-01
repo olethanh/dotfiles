@@ -164,3 +164,7 @@ bindkey '^Z' fancy-ctrl-z
 alias dbpwreset="psql -c \"update res_users set password ='admin';\""
 
 alias shell='sudo -u django /home/django/Supernova/venv/bin/python /home/django/Supernova/manage.py shell_plus'
+
+title() {
+    echo -en "\033]0;$*\a";
+}
