@@ -1,0 +1,16 @@
+*pyc
+.cache
+ve
+env
+.coverage
+docs/coverage
+venv
+venv3
+dist
+*.mo
+.DS_Store
+._.DS_Store
+db.sqlite3
+*.sql
+.*.s??
+.s??
