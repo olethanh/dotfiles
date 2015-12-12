@@ -1,0 +1,5 @@
+# the base we want in every venv
+pip == 7.1.2
+ipdb
+ipython
+q
