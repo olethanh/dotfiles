@@ -1,0 +1,15 @@
+zsh
+
+# dev
+python-virtualenv
+python-pip
+virtualenvwrapper
+chromium-browser
+
+#postgres
+postgresql
+postgresql-client
+postgresql-contrib
+libpq-dev #necessary to build psycopg
+python-dev
+
