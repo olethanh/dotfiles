@@ -1,4 +1,5 @@
 zsh
+git
 
 # dev
 python-virtualenv
@@ -12,4 +13,6 @@ postgresql-client
 postgresql-contrib
 libpq-dev #necessary to build psycopg
 python-dev
+vim-gnome
+
 
