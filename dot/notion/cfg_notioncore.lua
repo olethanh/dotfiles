@@ -20,6 +20,14 @@
 -- modifier to some of the F-key bindings.
 
 
+-- hack pour utiliser capslock pour le META
+os.execute("xmodmap -e 'remove Lock = Caps_Lock'")
+os.execute("xmodmap -e 'remove mod4 = Super_R'")
+os.execute("xmodmap -e 'keycode 66 = Super_R'")
+os.execute("xmodmap -e 'add mod3 = Super_R'")
+
+
+
 defbindings("WScreen", {
     bdoc("Switch to n:th object (workspace, full screen client window) "..
          "within current screen."),
@@ -140,6 +148,9 @@ defbindings("WMPlex", {
 
 -- Frames for transient windows ignore this bindmap
 defbindings("WMPlex.toplevel", {
+    bdoc("Run a program launcher."),
+    kpress(META.."f", "notioncore.exec_on(_, '~/dotfiles/menu')"),
+
     bdoc("Toggle tag of current object."),
     kpress(META.."T", "WRegion.set_tagged(_sub, 'toggle')", "_sub:non-nil"),
 

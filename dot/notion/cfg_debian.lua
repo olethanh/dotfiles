@@ -1,2 +1,2 @@
 META="Mod3+"
-ALTMETA=""
+ALTMETA="Mod1+"
