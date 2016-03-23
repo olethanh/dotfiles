@@ -106,8 +106,8 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 alias fakesmtp="/usr/bin/python -m smtpd -n -c DebuggingServer localhost:4025"
 alias fakestation="/home/olivier/.virtualenvs/station/bin/python Projects/rn/station/manage.py runserver 8001"
 alias ng="/home/olivier/.virtualenvs/sr/bin/python /home/olivier/Projects/RailfleetNG/manage.py"
-alias sn="/home/olivier/.virtualenvs/dix/bin/python /home/olivier/Projects/Supernova/manage.py"
-alias snr="/home/olivier/.virtualenvs/dix/bin/python /home/olivier/Projects/Supernova/manage.py runserver 8001"
+alias sn="/home/olivier/.virtualenvs/sn/bin/python /home/olivier/Projects/Supernova/manage.py"
+alias snr="/home/olivier/.virtualenvs/sn/bin/python /home/olivier/Projects/Supernova/manage.py runserver 8001"
 alias dbsize="psql postgres -c \"select datname, pg_size_pretty(pg_database_size(datname)) as size from pg_database order by pg_database_size(datname) desc;\""
 
 # vpn
@@ -171,3 +171,5 @@ title() {
 
 # list virtualenv  (manager by venvwrapper) without all the dumb output of lsvirtualenvs
 alias lsve="find ~/.virtualenvs  -maxdepth 1 -mindepth 1 -type d  -printf '%f\\n'|sort"
+alias meteo='curl http://wttr.in/bruxelles'
+
