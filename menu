@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -e ~/.local/bin/rofi ]
+then
+    ~/.local/bin/rofi -show run -width 100 -separator-style solid -fake-transparency -location 6 -terminal roxterm -lines 4 -bw 0 -kb-row-select Tab
+else
+    cd ~ && dmenu_run -i -b -p "run:"
+fi
