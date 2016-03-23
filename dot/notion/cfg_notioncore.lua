@@ -151,6 +151,9 @@ defbindings("WMPlex.toplevel", {
     bdoc("Run a program launcher."),
     kpress(META.."f", "notioncore.exec_on(_, '~/dotfiles/menu')"),
 
+    bdoc("Run a terminal emulator."),
+    kpress(META.."t", "mod_query.exec_on_merr(_, XTERM or 'x-terminal-emulator')"),
+
     bdoc("Toggle tag of current object."),
     kpress(META.."T", "WRegion.set_tagged(_sub, 'toggle')", "_sub:non-nil"),
 
