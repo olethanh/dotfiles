@@ -31,8 +31,8 @@ defwinprop{
 defwinprop{
     is_dockapp = true,
     statusbar = "systray",
-    max_size = { w = 64, h = 64},
-    min_size = { w = 64, h = 64},
+    --max_size = { w = 64, h = 64},
+    --min_size = { w = 64, h = 64},
 }
 
 -- Make an exception for Docker, which sets correct size hints.
@@ -40,6 +40,8 @@ defwinprop{
     is_dockapp = true,
     class = "Docker",
     statusbar = "systray",
+    max_size = { w = 32, h = 32},
+    min_size = { w = 32, h = 32},
 }
 
 -- https://sourceforge.net/tracker/?func=detail&aid=3471910&group_id=314802&atid=1324528

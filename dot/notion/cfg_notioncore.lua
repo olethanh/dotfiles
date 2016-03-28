@@ -19,12 +19,19 @@
 -- of the bindings. Similarly ALTMETA may be redefined to add a 
 -- modifier to some of the F-key bindings.
 
+-- un dock avec nm-applet
+os.execute("wmdocker&")
+os.execute("nm-applet&")
 
 -- hack pour utiliser capslock pour le META
 os.execute("xmodmap -e 'remove Lock = Caps_Lock'")
 os.execute("xmodmap -e 'remove mod4 = Super_R'")
 os.execute("xmodmap -e 'keycode 66 = Super_R'")
 os.execute("xmodmap -e 'add mod3 = Super_R'")
+os.execute("xrdb -merge ~/.Xresources")
+
+-- disable touchpad
+os.execute("synclient TouchpadOff=1")
 
 
 
@@ -152,7 +159,7 @@ defbindings("WMPlex.toplevel", {
     kpress(META.."f", "notioncore.exec_on(_, '~/dotfiles/menu')"),
 
     bdoc("Run a terminal emulator."),
-    kpress(META.."t", "mod_query.exec_on_merr(_, XTERM or 'x-terminal-emulator')"),
+    kpress(META.."y", "mod_query.exec_on_merr(_, XTERM or 'x-terminal-emulator')"),
 
     bdoc("Toggle tag of current object."),
     kpress(META.."T", "WRegion.set_tagged(_sub, 'toggle')", "_sub:non-nil"),
@@ -213,6 +220,8 @@ defbindings("WMPlex.toplevel", {
 -- frame bindings are found in some modules' configuration files.
 
 defbindings("WFrame", {
+    kpress(META.."Z", "WFrame.maximize_horiz(_); WFrame.maximize_vert(_)"),
+    kpress("Mod4+Z", "WFrame.maximize_horiz(_); WFrame.maximize_vert(_)"),
     submap(META.."K", {
         bdoc("Maximize the frame horizontally/vertically."),
         kpress("H", "WFrame.maximize_horiz(_)"),
