@@ -37,6 +37,13 @@ Bundle 'tpope/vim-eunuch'
 Bundle 'PeterRincker/vim-argumentative'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'Yggdroot/indentLine'
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
+" see bellow for activation
+Bundle 'kien/rainbow_parentheses.vim'
+
+
+
 "Bundle 'vimez/vim-showmarks' " conflict with vim-gutter, deactivated
 " Snipmate & dependencies
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -126,3 +133,8 @@ autocmd FileType netrw nnoremap q :bp\|bd #<CR>
 nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
 
+" for https://github.com/kien/rainbow_parentheses.vim
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces

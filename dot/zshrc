@@ -123,7 +123,7 @@ dbrestore() {
     pg_restore -d postgres --create -x -O  $1
 
 }
-export PATH=/home/olivier/.cabal/bin:/home/olivier/.local/bin:$PATH
+export PATH=/home/olivier/bla/node-v4.4.3-linux-x64/bin:/home/olivier/.cabal/bin:/home/olivier/.local/bin:$PATH
 
 alias invoke="invoker ~/all.ini"
 
