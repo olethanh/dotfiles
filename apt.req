@@ -1,5 +1,6 @@
 zsh
 git
+autossh
 
 # dev
 python-virtualenv
@@ -11,7 +12,8 @@ chromium-browser
 postgresql
 postgresql-client
 postgresql-contrib
-libpq-dev #necessary to build psycopg
+#necessary to build psycopg
+libpq-dev
 python-dev
 vim-gnome
 

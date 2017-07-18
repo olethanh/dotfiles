@@ -19,7 +19,8 @@ Bundle 'saltstack/salt-vim'
 
 
 " python
-Bundle 'pyflakes.vim'
+"Bundle 'pyflakes.vim'
+Bundle 'scrooloose/syntastic'
 Bundle 'indentpython.vim'
 Bundle 'davidhalter/jedi-vim'
 " Others
@@ -43,6 +44,8 @@ Bundle 'vim-airline/vim-airline-themes'
 Bundle 'kien/rainbow_parentheses.vim'
 
 
+Bundle 'kana/vim-textobj-user'
+Bundle 'bps/vim-textobj-python'
 
 "Bundle 'vimez/vim-showmarks' " conflict with vim-gutter, deactivated
 " Snipmate & dependencies
@@ -50,9 +53,11 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 "Bundle "honza/snipmate-snippets"
 Bundle "garbas/vim-snipmate"
-Bundle 'file:///home/olivier/Projects/openerp-snippets.vim/'
+"Bundle 'file:///home/olivier/Projects/openerp-snippets.vim/'
 " End snipmate
 Bundle 'moll/vim-bbye'
+
+Bundle 'vimwiki/vimwiki'
 
 set rtp+=~/.fzf
 
@@ -66,11 +71,6 @@ filetype plugin indent on     " required for vundle!
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
-
-" Some auto filetype detection for color syntaxing
-au BufNewFile,BufRead *.mako setfiletype mako
-au BufRead,BufNewFile *.go setfiletype go
-au BufRead,BufNewFile *.coffee set ts=4 sw=4
 
 " more colors
 set t_Co=256
@@ -121,14 +121,19 @@ colorscheme vitamins
 noremap <silent><F6> :call ResetSnippets()<CR>:call " GetSnippets(snippets_dir, &ft)<CR>
 
 " Ignore theses extensions
-set suffixes=*.pyc,*.aux,*.swp,*.pyo
-set wildignore=*.swp,*.pyc
+set suffixes=*.pyc,*.aux,*.swp,*.pyo,*.arm
+set wildignore=*.swp,*.pyc,*.arm
 
 " Shortcut for Autopep
-noremap ,a :up<cr>:silent !autopep8  -i %<cr>:e!<cr>:redraw!<cr>
+noremap ,a :up<cr>:silent !autopep8  --max-line-length=80 -i %<cr>:e!<cr>:redraw!<cr>
 noremap ,b :up<cr>:silent !pyfmt -i %<cr>:e!<cr>:redraw!<cr>
 
+" Some auto filetype detection for color syntaxing
+au BufNewFile,BufRead *.mako setfiletype mako
+au BufRead,BufNewFile *.go setfiletype go
+au BufRead,BufNewFile *.coffee set ts=4 sw=4
 autocmd FileType netrw nnoremap q :bp\|bd #<CR>
+autocmd BufRead,BufNewFile *.c set noet
 
 nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
@@ -138,3 +143,18 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+" syntastic
+let g:airline#extensions#syntastic#enabled = 1
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+nmap =- <Plug>VimwikiRemoveHeaderLevel
+cnoremap help vert help
+map <Leader>s :SyntasticToggleMode<CR>
+
+" err needed for gdiff
+set diffopt+=vertical
