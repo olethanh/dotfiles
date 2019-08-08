@@ -1,53 +1,35 @@
 # Created by newuser for 4.3.17
 fpath=(~/.zsh/completion $fpath)
 
-export PATH=/home/olivier/bla/node-v4.4.3-linux-x64/bin:/home/olivier/.cabal/bin:/home/olivier/.local/bin:$PATH
+export PATH=/home/olivier/.local/bin:$PATH
 
 #source ~/Projects/zsh-git-prompt/zshrc.sh
 #source ~/Projects/liquidprompt/liquidprompt
-#source ~/zsh_dbmanagement
-#fpath=($HOME/Projects/zsh-completions/src $fpath)
 #PROMPT='%{'$'\033[01;32m%}%n@%B%m%{\033[00m%} %{\033[01;33m%}%~%{\033[00m%}%b$(git_super_status)%{\033[00m%} '
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
-zstyle ':completion:*' max-errors 3 numeric
-zstyle ':completion:*' use-compctl false
-autoload -Uz compinit
-compinit
 
+# History option
 setopt INC_APPEND_HISTORY
 setopt histignorealldups sharehistory
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+# Keep 100000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE=~/.zsh_history
 
-
-
 # general
-alias ls='ls --color=auto'
+export EDITOR=vim
 alias o="xdg-open"
 alias reload="source ~/.zshrc"
-
-alias bstart="bluetile & chromium & tomboy & nm-applet & feh --bg-center 43Ip0Ww.jpg "
-alias pgactivity="pg_activity -h \"\""
-alias pga="pg_activity -h \"\""
-
-# Work
-alias os="/home/olivier/.virtualenvs/openerp/bin/python /home/olivier/Projects/openerp-server/bin/openerp-server.py --log-level=test --without-demo=all"
-alias ow="/home/olivier/.virtualenvs/openerp/bin/python /home/olivier/Projects/openerp-web/openerp-web.py"
-
-alias prod="echo -en \"\033]0;prod\a\"; ssh openerp@donut.railnova.eu -t screen -RD;echo -en \"\033]0;Terminal\a\"; "
-alias atunnel="ssh olivier@donut.railnova.eu -L 6540:localhost:443"
+alias autube="youtube-dl -x"
+alias ls='ls --color=auto'
+alias l="ls -lh"
+alias taupe="netstat -taupe"
+alias c="cd .."
+alias cc="cd ../.."
+alias ccc="cd ../../.."
+alias cccc="cd ../../../.."
 
 
-# Needed for virtual env
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Projects #used by mkproject (of virtualenvwrapper)
-#source /etc/bash_completion.d/virtualenvwrapper
-source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
-
-
-# ANTIGEN
+# ANTIGEN: Zsh package manager
 source $HOME/dotfiles/antigen.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle nojhan/liquidprompt
@@ -55,55 +37,49 @@ antigen bundle zsh-users/zsh-completions src
 antigen apply
 
 
-vmr()
-{
-    echo -en "\033]0;$1\a"
-    ssh speculos -tA ssh -t $1 sudo screen -RD $2
-    echo -en "\033]0;out\a"
-}
-
-vm()
-{
-    echo -en "\033]0;$1\a"
-    ssh speculos -tA ssh -t $1 screen -RD
-    echo -en "\033]0;out\a"
-}
-
-alias c="cd .."
-alias cc="cd ../.."
-alias ccc="cd ../../.."
-alias cccc="cd ../../../.."
 alias m="python manage.py"
-alias nb="echo -en \"\033]0;Notebook serv\a\";~/.virtualenvs/nb/bin/ipython notebook --profile=nb;echo -en \"\033]0;out\a\";"
-alias rnb="echo -en \"\033]0;Notebook serv\a\";~/.virtualenvs/rn/bin/ipython notebook --profile=nb;echo -en \"\033]0;out\a\";"
-alias gnb="echo -en \"\033]0;Notebook serv\a\";~/.virtualenvs/ng/bin/ipython notebook --profile=gnb;echo -en \"\033]0;out\a\";"
 alias as="apt-cache search"
 alias ai="sudo apt-get install"
+alias apt="sudo apt"
+alias attach="sudo lxc-attach -n"
+alias wiki="vim -c :VimwikiIndex"
+alias meteo='curl http://wttr.in/bruxelles'
+alias td=qtodotxt2
+alias vw='vim -c VimwikiIndex'
+
 # Insert Google DNS in resolv.conf
 alias gdns="sudo sh -c 'echo nameserver 8.8.8.8 > /etc/resolv.conf'"
 
-
 # set up PIP Download cache so it won't reload the package
 export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip
-# Command to release on pypi
-alias release="python setup.py egg_info sdist bdist_wheel bdist_egg upload"
-
-# Taken from debian default .zsh not sure what it does yet
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
 
 
-# Bunch of eval...
+## Let a bunch of app configure themselves
+# For proper color output in ls
 eval "$(dircolors -b)"
+
+# FZF for fuzzy
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Lesspipe (convert binary output unreadable by less
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
-#[ -x "$(which thefuck)" ] && eval "$(thefuck --alias)"
+
+# Virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Projects #used by mkproject (of virtualenvwrapper)
+#source /etc/bash_completion.d/virtualenvwrapper
+# Conditionaly load in case it's not installed
+[ -f /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh ] && source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
+# list virtualenv  (manager by venvwrapper) without all the dumb output of lsvirtualenvs
+alias lsve="find ~/.virtualenvs  -maxdepth 1 -mindepth 1 -type d  -printf '%f\\n'|sort"
 
 
+# Autocompletion
+autoload -Uz compinit
+compinit
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' max-errors 3 numeric
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 zstyle ':completion:*' menu select=long
@@ -113,53 +89,50 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+#
+# Taken from debian default .zsh not sure what it does yet
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
 
-# ng dev
+
+#  WORK and Development
 alias fakesmtp="/usr/bin/python -m smtpd -n -c DebuggingServer localhost:4025"
-alias fakestation="/home/olivier/.virtualenvs/station/bin/python Projects/rn/station/manage.py runserver 8001"
-alias ng="/home/olivier/.virtualenvs/sr/bin/python /home/olivier/Projects/RailfleetNG/manage.py"
-alias sn="/home/olivier/.virtualenvs/sn/bin/python /home/olivier/Projects/Supernova/manage.py"
-alias snr="/home/olivier/.virtualenvs/sn/bin/python /home/olivier/Projects/Supernova/manage.py runserver 8001"
-alias dbsize="psql postgres -c \"select datname, pg_size_pretty(pg_database_size(datname)) as size from pg_database order by pg_database_size(datname) desc;\""
-
+# left for exemple
+# alias snr="/home/olivier/.virtualenvs/sn/bin/python /home/olivier/Projects/Supernova/manage.py runserver 8001"
 # vpn
-alias vpn="cd ~/.certs/newvpn && sudo openvpn rn-vpn.conf"
+# alias vpn="cd ~/.certs/newvpn && sudo openvpn rn-vpn.conf"
+#alias dbpwreset="psql -c \"update res_users set password ='admin';\""
+# retrievedb() {
+#    lftp -c "open sftp://bkp@sabayon.railnova.eu; get bkp@donut.railnova.eu/$1/DAILY/LAST.dump -o ~/Projects/dumps/$1-$(date -I).dump"
+# }
 
-
-retrievedb() {
-    lftp -c "open sftp://bkp@sabayon.railnova.eu; get bkp@donut.railnova.eu/$1/DAILY/LAST.dump -o ~/Projects/dumps/$1-$(date -I).dump"
-}
-
+alias dbsize="psql postgres -c \"select datname, pg_size_pretty(pg_database_size(datname)) as size from pg_database order by pg_database_size(datname) desc;\""
 
 dbrestore() {
     pg_restore -d postgres --create -x -O  $1
 
 }
 
-alias invoke="invoker ~/all.ini"
-
 #alias irc="echo -en \"\033]0;chat\a\"; ssh staz@server.staz.be -t screen -RDU pts-7; echo -en \"\033]0;Terminal\a\""
 alias irc="echo -en \"\033]0;chat\a\"; autossh olivier@server.staz.be -t tmux attach; echo -en \"\033]0;Terminal\a\""
 alias q="echo -en \"\033]0;/tmp/q\a\"; touch /tmp/q; tail -f /tmp/q; echo -en \"\033]0;Terminal\a\""
+alias shell='sudo -u django /home/django/Supernova/venv/bin/python /home/django/Supernova/manage.py shell_plus'
 
-gcm() {
-#    git commit -m "[$1] $(echo $*)";}
-    git commit -m "$(echo $*)";}
-
-
-export EDITOR=vim
-alias autube="youtube-dl -x"
-alias l="ls -lh"
-alias taupe="netstat -taupe"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+gcm() { git commit -m "$(echo $*)";}
 
 
+
+# For python developement, jump into module
 cdp () {
     cd "$(python -c "import os.path as _, ${1}; \
             print(_.dirname(_.realpath(${1}.__file__[:-1])))"
         )"
 }
 
+# Ctrl-Z will now bring back the app
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
@@ -172,46 +145,30 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-#alias git=hub
-alias dbpwreset="psql -c \"update res_users set password ='admin';\""
 
-alias shell='sudo -u django /home/django/Supernova/venv/bin/python /home/django/Supernova/manage.py shell_plus'
-
+# Control the tab title in the terminal application
 title() {
     echo -en "\033]0;$*\a";
 }
 resettitle() {
     echo -en \"\033]0;Terminal\a\";
 }
-# list virtualenv  (manager by venvwrapper) without all the dumb output of lsvirtualenvs
-alias lsve="find ~/.virtualenvs  -maxdepth 1 -mindepth 1 -type d  -printf '%f\\n'|sort"
-alias meteo='curl http://wttr.in/bruxelles'
 
-alias apt="sudo apt"
-alias salt="sudo salt"
-alias salt-key="sudo salt-key"
-alias attach="sudo lxc-attach -n"
-
-alias wiki="vim -c :VimwikiIndex"
-
+# SSH a host, change the tab title and tmux attach
 tssh(){
     echo -en "\033]0;$*\a";
     /usr/bin/ssh -t $@ "tmux attach || tmux new";
     echo -en "\033]0;Terminal\a";
 }
+# Idem with autossh instead
 ta(){
     echo -en "\033]0;$*\a";
     /usr/bin/autossh -t $@ "tmux attach || tmux new";
     echo -en "\033]0;Terminal\a";
 }
-rn(){
-    echo -en "\033]0;$*\a";
-    /usr/bin/autossh -t $@.railnova.net "tmux attach || tmux new";
-    echo -en "\033]0;Terminal\a";
-}
 
 
-
+# Filebrowser
 # support for nnn see https://github.com/jarun/nnn#quickstart
 export NNN_TMPFILE="/tmp/nnn"
 export NNN_FALLBACK_OPENER=xdg-open
@@ -226,18 +183,29 @@ n()
         fi
 }
 
-alias vw='vim -c VimwikiIndex'
-
-
 # Retire / de la definition des mots, ainsi quand on fait ctrl-w ca vire pas tout un path
 # https://unix.stackexchange.com/questions/48577/modifying-the-zsh-shell-word-split
 export WORDCHARS=$WORDCHARS:s:/:
 
-alias td=qtodotxt2
-
-
+# For android developement for Sailsense
 export ANDROID_HOME=$HOME/Projects/sailsense/android-sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+
+help()
+{
+    echo "A start of help"
+    echo "Commands:"
+    echo " n for a file browser"
+    echo " fc to edit last command in vim"
+    echo ""
+    echo "Keyboard shortcuts:"
+    echo " Ctrl-z to do fg"
+    echo " Ctrl-r to history search with fzf"
+    echo " Ctrl-t to find file with fzf"
+    echo " Alt-C cd into directory with fzf"
+    echo " Alt-. take args from last command"
+}
