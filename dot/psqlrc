@@ -5,7 +5,7 @@
 \set PROMPT2 '[more] %R > '
 -- By default, NULL displays as an empty space. Is it actually an empty
 -- string, or is it null? This makes that distinction visible.
-\pset null '[NULL]'
+--\pset null '[NULL]'
 
 -- Print how long commands ran
 \timing
@@ -22,4 +22,4 @@
 \set tsize '(select table_schema, table_name, pg_size_pretty(size) as size, pg_size_pretty(total_size) as total_size from (:rtsize) x order by x.size desc, x.total_size desc, table_schema, table_name)'
 
 \unset QUIET
-\echo 'Use :tzsize; for table size'
+--\echo 'Use :tzsize; for table size'
