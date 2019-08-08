@@ -121,8 +121,16 @@ alias irc="echo -en \"\033]0;chat\a\"; autossh olivier@server.staz.be -t tmux at
 alias q="echo -en \"\033]0;/tmp/q\a\"; touch /tmp/q; tail -f /tmp/q; echo -en \"\033]0;Terminal\a\""
 alias shell='sudo -u django /home/django/Supernova/venv/bin/python /home/django/Supernova/manage.py shell_plus'
 
-gcm() { git commit -m "$(echo $*)";}
+# git help
+function gcm() { git commit -m "$(echo $*)";}
+function git-current-branch() {
+    git rev-parse --abbrev-ref HEAD
+}
 
+# push and set upstream
+function gpp(){
+    git push --set-upstream origin $(git-current-branch)
+}
 
 
 # For python developement, jump into module
