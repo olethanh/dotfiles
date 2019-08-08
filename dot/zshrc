@@ -1,6 +1,8 @@
 # Created by newuser for 4.3.17
 fpath=(~/.zsh/completion $fpath)
 
+export PATH=/home/olivier/bla/node-v4.4.3-linux-x64/bin:/home/olivier/.cabal/bin:/home/olivier/.local/bin:$PATH
+
 #source ~/Projects/zsh-git-prompt/zshrc.sh
 #source ~/Projects/liquidprompt/liquidprompt
 #source ~/zsh_dbmanagement
@@ -15,8 +17,8 @@ compinit
 setopt INC_APPEND_HISTORY
 setopt histignorealldups sharehistory
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=100000
+SAVEHIST=100000
 HISTFILE=~/.zsh_history
 
 
@@ -47,7 +49,7 @@ source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
 
 # ANTIGEN
 source $HOME/dotfiles/antigen.zsh
-#antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle nojhan/liquidprompt
 antigen bundle zsh-users/zsh-completions src
 antigen apply
@@ -92,7 +94,14 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
+
+
+# Bunch of eval...
 eval "$(dircolors -b)"
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+#[ -x "$(which thefuck)" ] && eval "$(thefuck --alias)"
+
+
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -126,12 +135,11 @@ dbrestore() {
     pg_restore -d postgres --create -x -O  $1
 
 }
-export PATH=/home/olivier/bla/node-v4.4.3-linux-x64/bin:/home/olivier/.cabal/bin:/home/olivier/.local/bin:$PATH
 
 alias invoke="invoker ~/all.ini"
 
 #alias irc="echo -en \"\033]0;chat\a\"; ssh staz@server.staz.be -t screen -RDU pts-7; echo -en \"\033]0;Terminal\a\""
-alias irc="echo -en \"\033]0;chat\a\"; autossh staz@server.staz.be -t tmux attach; echo -en \"\033]0;Terminal\a\""
+alias irc="echo -en \"\033]0;chat\a\"; autossh olivier@server.staz.be -t tmux attach; echo -en \"\033]0;Terminal\a\""
 alias q="echo -en \"\033]0;/tmp/q\a\"; touch /tmp/q; tail -f /tmp/q; echo -en \"\033]0;Terminal\a\""
 
 gcm() {
@@ -184,7 +192,6 @@ alias salt="sudo salt"
 alias salt-key="sudo salt-key"
 alias attach="sudo lxc-attach -n"
 
-eval "$(thefuck --alias)"
 alias wiki="vim -c :VimwikiIndex"
 
 tssh(){
@@ -211,15 +218,26 @@ export NNN_FALLBACK_OPENER=xdg-open
 
 n()
 {
-        if [ -n "$1" ]; then
-                nnn -d "$1"
-        else
-                nnn -d
-        fi
+        nnn "$@"
 
         if [ -f $NNN_TMPFILE ]; then
                 . $NNN_TMPFILE
                 rm $NNN_TMPFILE
         fi
 }
+
 alias vw='vim -c VimwikiIndex'
+
+
+# Retire / de la definition des mots, ainsi quand on fait ctrl-w ca vire pas tout un path
+# https://unix.stackexchange.com/questions/48577/modifying-the-zsh-shell-word-split
+export WORDCHARS=$WORDCHARS:s:/:
+
+alias td=qtodotxt2
+
+
+export ANDROID_HOME=$HOME/Projects/sailsense/android-sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
