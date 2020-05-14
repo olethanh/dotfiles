@@ -7,14 +7,21 @@ python-virtualenv
 python-pip
 virtualenvwrapper
 chromium-browser
+ipython3
 
 #postgres
-postgresql
-postgresql-client
-postgresql-contrib
+#postgresql
+#postgresql-client
+#postgresql-contrib
 #necessary to build psycopg
 libpq-dev
 python-dev
 vim-gnome
 
 
+curl
+
+mpv # to replace smplayer
+vlc # for the video we cna't read otherwhise
+tig
+python3-tk

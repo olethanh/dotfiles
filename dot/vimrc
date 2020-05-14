@@ -20,9 +20,9 @@ Bundle 'saltstack/salt-vim'
 
 " python
 "Bundle 'pyflakes.vim'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 Bundle 'indentpython.vim'
-Bundle 'davidhalter/jedi-vim'
+"Bundle 'davidhalter/jedi-vim'
 " Others
 Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'The-NERD-Commenter'
@@ -33,7 +33,9 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
+" Allow pressing -
 Bundle 'tpope/vim-vinegar'
+" Allow :SudoWrite
 Bundle 'tpope/vim-eunuch'
 Bundle 'PeterRincker/vim-argumentative'
 Bundle 'airblade/vim-gitgutter'

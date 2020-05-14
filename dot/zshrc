@@ -60,6 +60,9 @@ eval "$(dircolors -b)"
 
 # FZF for fuzzy
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_COMPLETION_TRIGGER=''
+bindkey '^T' fzf-completion
+bindkey '^I' $fzf_default_completion
 
 # Lesspipe (convert binary output unreadable by less
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
@@ -126,11 +129,17 @@ function gcm() { git commit -m "$(echo $*)";}
 function git-current-branch() {
     git rev-parse --abbrev-ref HEAD
 }
+alias gss="git status --short"
 
 # push and set upstream
 function gpp(){
     git push --set-upstream origin $(git-current-branch)
 }
+# like gpp but without pushing
+function gsp(){
+    git branch --set-upstream-to=origin/$(git-current-branch) $(git-current-branch)
+}
+
 
 
 # For python developement, jump into module
@@ -153,6 +162,22 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
+# alt-p : insert last command result
+zmodload -i zsh/parameter
+insert-last-command-output() {
+  LBUFFER+="$(eval $history[$((HISTCMD-1))])"
+}
+zle -N insert-last-command-output
+bindkey '^[p' insert-last-command-output
+
+
+# Edit command line by pressing Ctrl+x Ctrl+e
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^Xv' edit-command-line
+
+# Ctrl-xl remove content betwen ctrl space and region
+bindkey "^Xl" kill-region
 
 # Control the tab title in the terminal application
 title() {
@@ -193,6 +218,9 @@ n()
 
 # Retire / de la definition des mots, ainsi quand on fait ctrl-w ca vire pas tout un path
 # https://unix.stackexchange.com/questions/48577/modifying-the-zsh-shell-word-split
+# Allows to kill backward word path by path using ctrl+w
+# With this, ctrl+w on '/usr/bin' will produce '/usr'. Without it, '/usr/bin' is removed.
+# Default is: *?_-.[]~=/&;!#$%^(){}<>
 export WORDCHARS=$WORDCHARS:s:/:
 
 # For android developement for Sailsense
@@ -209,11 +237,27 @@ help()
     echo "Commands:"
     echo " n for a file browser"
     echo " fc to edit last command in vim"
-    echo ""
+    echo " "
     echo "Keyboard shortcuts:"
     echo " Ctrl-z to do fg"
     echo " Ctrl-r to history search with fzf"
     echo " Ctrl-t to find file with fzf"
     echo " Alt-C cd into directory with fzf"
     echo " Alt-. take args from last command"
+    echo " Ctrl=Xv Like fc but for current command"
 }
+
+alias morehelp="cat $HOME/dotfiles/shellhelp.txt"
+
+
+# https://jcode.me/cdpath-with-zsh/
+# temporary test, i will see if i like it
+cdpath=($HOME)
+
+# sailsense
+alias coldrun="/home/olivier/.virtualenvs/coldrun/bin/python3 /home/olivier/Projects/sailsense/coldrun/manage.py"
+alias em="title emulator && /home/olivier/Projects/sailsense/android-sdk/emulator/emulator   @Pixel_3_API_27"
+
+# For yarn
+# Run once: yarn config set prefix ~/.yarn
+export PATH=$PATH:~/.yarn/bin
