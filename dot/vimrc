@@ -24,7 +24,7 @@ Bundle 'saltstack/salt-vim'
 Bundle 'indentpython.vim'
 "Bundle 'davidhalter/jedi-vim'
 " Others
-Bundle 'git://git.wincent.com/command-t.git'
+"Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'The-NERD-Commenter'
 Bundle 'lambdatoast/elm.vim'
 "Bundle 'taglist.vim'
@@ -43,7 +43,12 @@ Bundle 'Yggdroot/indentLine'
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 " see bellow for activation
-Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'kien/rainbow_parentheses.vim'
+
+
+Bundle 'dbeniamine/todo.txt-vim.git'
+Bundle 'chrisbra/recover.vim'
+
 
 
 Bundle 'kana/vim-textobj-user'
@@ -141,10 +146,10 @@ nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
 
 " for https://github.com/kien/rainbow_parentheses.vim
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+"au VimEnter * RainbowParenthesesToggle
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
 
 " syntastic
 let g:airline#extensions#syntastic#enabled = 1
@@ -157,6 +162,18 @@ let g:syntastic_check_on_wq = 0
 nmap =- <Plug>VimwikiRemoveHeaderLevel
 cnoremap help vert help
 map <Leader>s :SyntasticToggleMode<CR>
+
+
+" For todo.txt
+map <Leader>t :e Dropbox/1 GTD/todo.txt<CR>
+let g:Todo_txt_prefix_creation_date=1
+" map \r to XWindows clipboard
+map <Leader>r "+gp
+" Following is necessary because from my testing xdg-open don't work from
+" gvim, to remove when this is fixed
+if has('gui_running')
+    let g:netrw_browsex_viewer='firefox'
+endif
 
 " err needed for gdiff
 set diffopt+=vertical
