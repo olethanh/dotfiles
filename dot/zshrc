@@ -203,7 +203,7 @@ ta(){
 
 # Filebrowser
 # support for nnn see https://github.com/jarun/nnn#quickstart
-export NNN_TMPFILE="/tmp/nnn"
+export NNN_TMPFILE="$HOME/.config/nnn/.lastd"
 export NNN_FALLBACK_OPENER=xdg-open
 
 n()
