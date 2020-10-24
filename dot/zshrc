@@ -1,7 +1,7 @@
 # Created by newuser for 4.3.17
 fpath=(~/.zsh/completion $fpath)
 
-export PATH=/home/olivier/.local/bin:$PATH
+export PATH=/home/olivier/dotfiles/scripts:/home/olivier/.local/bin:$PATH
 
 #source ~/Projects/zsh-git-prompt/zshrc.sh
 #source ~/Projects/liquidprompt/liquidprompt

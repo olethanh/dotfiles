@@ -1,0 +1,23 @@
+#!/bin/bash
+# From https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Hardware_and_Cards
+# This script uses kdialog notification to warn the user of the currently swapped to profile. User could adapt it to their needs or change it.
+set -euo pipefail
+# for debugging
+#set -x
+CURRENT_PROFILE=$(pactl info|grep "Sink:" |cut -d ' ' -f 3)
+
+# So notification don't stay in the log --hint int:transient:1
+
+if [ "$CURRENT_PROFILE" = "alsa_output.pci-0000_00_1f.3.analog-stereo" ] ; then
+        pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo-extra2+input:analog-stereo
+        notify-send --expire-time=300 \
+            --hint int:transient:1\
+            --app-name=home-switch-audio \
+            --icon=monitor \
+            "home-switch-audio" "Switching to HDMI output"
+        echo "Switching to HDMI output"
+else
+        pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:analog-stereo+input:analog-stereo
+        notify-send  --expire-time=300 --hint int:transient:1 --app-name=home-switch-audio --icon=audio-headset "Switching to Laptop audio"
+        echo "Switching to Laptop audio"
+fi

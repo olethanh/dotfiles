@@ -1,0 +1,4 @@
+#!/bin/sh
+# only display on the right profile, set the audio on the laptop (in case it was on the hdmi)
+pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:analog-stereo+input:analog-stereo
+xrandr --output DP-1-3-1 --off --output DP-1-3-2 --mode "1920x1080"
