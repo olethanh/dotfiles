@@ -261,3 +261,26 @@ alias em="title emulator && /home/olivier/Projects/sailsense/android-sdk/emulato
 # For yarn
 # Run once: yarn config set prefix ~/.yarn
 export PATH=$PATH:~/.yarn/bin
+alias dr='df -h|grep sd'
+
+
+# https://gist.github.com/premek/6e70446cfc913d3c929d7cdbfe896fef
+function mv() {
+  if [ "$#" -ne 1 ] || [ ! -f "$1" ]; then
+    command mv "$@"
+    return
+  fi
+
+  newfilename="$1"
+  vared newfilename
+  command mv -v -- "$1" "$newfilename"
+}
+
+
+
+
+# testing kitty, we should add a guard on this
+## Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
+alias icat="kitty icat --align=left"
+alias isvg="rsvg-convert | icat"
