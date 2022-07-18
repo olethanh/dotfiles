@@ -1,0 +1,22 @@
+#!/bin/sh
+# from https://stackoverflow.com/questions/13271643/git-hook-for-diff-sqlite-table
+#diff --git a/iaso/tests/gpkg/test_import.py b/iaso/tests/gpkg/test_import.py
+#index 142048a..77cb3a9 100644
+#--- a/iaso/tests/gpkg/test_import.py
+#+++ b/iaso/tests/gpkg/test_import.py
+#"iaso/tests/fixtures/gpkg/minimal.gpkg /tmp/cjkYF1_minimal.gpkg 4570bca8c2f8477275c7d69bab4930d190d72fb4 100644 iaso/tests/fixtures/gpkg/minimal.gpkg 77bb5a3c893d50c78f35dfa5ef620952ca6f83c5 100644
+#echo "$*"
+#echo "$1:"
+echo sqldiff a/$1 b/$2
+echo ---
+echo +++
+# Duplicate sqldiff's output for consumption by wc and stdout.
+# This enables us to check for an empty output but still see
+# sqldiffs messages if there are any.
+sqldiff "$2" "$5" 2>&1 | {
+    tee /dev/fd/3 |
+        if [ $(wc -c) -eq 0 ]; then
+            echo "  nothing changed according to sqldiff"
+        fi
+} 3>&1
+

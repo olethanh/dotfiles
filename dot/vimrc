@@ -14,8 +14,8 @@ Bundle 'fmoralesc/vim-vitamins.git'
 " syntax hl
 Bundle 'mako.vim'
 Bundle 'Jinja'
-Bundle 'vim-coffee-script'
-Bundle 'saltstack/salt-vim'
+"Bundle 'vim-coffee-script'
+"Bundle 'saltstack/salt-vim'
 
 
 " python
@@ -37,7 +37,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-vinegar'
 " Allow :SudoWrite
 Bundle 'tpope/vim-eunuch'
-Bundle 'PeterRincker/vim-argumentative'
+"Bundle 'PeterRincker/vim-argumentative'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vim-airline/vim-airline'
@@ -59,7 +59,7 @@ Bundle 'bps/vim-textobj-python'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 "Bundle "honza/snipmate-snippets"
-Bundle "garbas/vim-snipmate"
+"Bundle "garbas/vim-snipmate"
 "Bundle 'file:///home/olivier/Projects/openerp-snippets.vim/'
 " End snipmate
 Bundle 'moll/vim-bbye'
@@ -173,6 +173,7 @@ map <Leader>r "+gp
 " gvim, to remove when this is fixed
 if has('gui_running')
     let g:netrw_browsex_viewer='firefox'
+    " set  guifont=Bitstream-Vera-Sans-Mono-Bold:16
 endif
 
 " err needed for gdiff

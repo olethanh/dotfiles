@@ -13,3 +13,5 @@ dist
 db.sqlite3
 .*.s??
 .s??
+
+.gitattributes

@@ -37,7 +37,7 @@ antigen bundle zsh-users/zsh-completions src
 antigen apply
 
 
-alias m="python manage.py"
+#alias m="python manage.py"
 alias as="apt-cache search"
 alias ai="sudo apt-get install"
 alias apt="sudo apt"
@@ -79,7 +79,7 @@ alias lsve="find ~/.virtualenvs  -maxdepth 1 -mindepth 1 -type d  -printf '%f\\n
 
 # Autocompletion
 autoload -Uz compinit
-compinit
+#compinit ## fucking slow down zsh, apparently we may only need to launch it when completion is updated?
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' max-errors 3 numeric
@@ -120,7 +120,7 @@ dbrestore() {
 }
 
 #alias irc="echo -en \"\033]0;chat\a\"; ssh staz@server.staz.be -t screen -RDU pts-7; echo -en \"\033]0;Terminal\a\""
-alias irc="echo -en \"\033]0;chat\a\"; autossh olivier@server.staz.be -t tmux attach; echo -en \"\033]0;Terminal\a\""
+alias irc="echo -en \"\033]0;chat\a\"; autossh olivier@server.staz.be -t tmux -S irc attach; echo -en \"\033]0;Terminal\a\""
 alias q="echo -en \"\033]0;/tmp/q\a\"; touch /tmp/q; tail -f /tmp/q; echo -en \"\033]0;Terminal\a\""
 alias shell='sudo -u django /home/django/Supernova/venv/bin/python /home/django/Supernova/manage.py shell_plus'
 
@@ -281,6 +281,17 @@ function mv() {
 
 # testing kitty, we should add a guard on this
 ## Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+#kitty + complete setup zsh | source /dev/stdin
 alias icat="kitty icat --align=left"
 alias isvg="rsvg-convert | icat"
+alias EMV-CAP="/home/olivier/.virtualenvs/emvcap/bin/python /home/olivier/Projects/EMVCAP-1.4/EMV-CAP"
+#if [ -e /home/olivier/.nix-profile/etc/profile.d/nix.sh ]; then . /home/olivier/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+#
+#
+# Jrnl
+#  We want draft note file to be created outside /tmp so if the laptop crash during edition we don't lost them
+#  TMPDIR is used in the tempfile python module to override the /tmp dir
+alias jrnl="TMPDIR=/home/olivier/.tmp jrnl"
+alias openpr='firefox -P work "https://github.com/BLSQ/iaso/pull/new/`git branch --show-current`"'
+
+alias eb="/home/olivier/.virtualenvs/eb/bin/eb"
